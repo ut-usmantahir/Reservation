@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "378362385140",
+    "firebase_url": "https://reservation-f88eb.firebaseio.com",
+    "project_id": "reservation-f88eb",
+    "storage_bucket": "reservation-f88eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378362385140:android:d445cce8eef8331b23c4a1",
+        "android_client_info": {
+          "package_name": "com.example.reservation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378362385140-3nbrbgnnunuk7pu382ibf5sbnlrmdo6o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYbws4Zg76Pe1kG04j4YZD5ejCl8UU83Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378362385140-3nbrbgnnunuk7pu382ibf5sbnlrmdo6o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
