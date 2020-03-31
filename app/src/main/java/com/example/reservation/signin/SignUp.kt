@@ -7,10 +7,14 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.util.Patterns
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.reservation.Home
+import com.example.reservation.HomeCustomer
+import com.example.reservation.HomeOwner
 import com.example.reservation.R
 import com.example.reservation.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -21,12 +25,13 @@ import dmax.dialog.SpotsDialog
 import java.util.*
 import kotlin.collections.HashMap
 
-class SignUp : AppCompatActivity() {
+class SignUp : AppCompatActivity()  {
 
     val mAuth = FirebaseAuth.getInstance()
-    lateinit var mDatabase : DatabaseReference
+//    lateinit var mDatabase : DatabaseReference
     lateinit var mBinding : ActivitySignUpBinding
     lateinit var dialog: android.app.AlertDialog
+    lateinit var userType:String
 
 
     private var imageUri: Uri? = null
@@ -39,6 +44,24 @@ class SignUp : AppCompatActivity() {
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
 
+        val userTypeArray = arrayOf("Customer","Owner")
+        val arrayAdapter = ArrayAdapter(this,android.R.layout.simple_spinner_item,userTypeArray)
+
+        mBinding.spUsertype.adapter = arrayAdapter
+
+        mBinding.spUsertype?.onItemSelectedListener = object:
+                    AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                    Toast.makeText(this@SignUp,"Please select an item",Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
+                userType = userTypeArray[p2]
+                Log.d("Register","Item Selected in Spinner: ${userType}")
+            }
+
+        }
 
         mBinding.userProfilePhoto.setOnClickListener {
             takePictureIntent()
@@ -75,40 +98,6 @@ class SignUp : AppCompatActivity() {
 
 
 
-  /*  private fun uploadImageAndSaveUri(bitmap: Bitmap) {
-        val baos = ByteArrayOutputStream()
-        val storageRef = FirebaseStorage.getInstance()
-            .reference
-            .child("pics")
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-        val image = baos.toByteArray()
-
-        val upload = storageRef.putBytes(image)
-
-//        progressbar_pic.visibility = View.VISIBLE
-        upload.addOnCompleteListener { uploadTask ->
-//            progressbar_pic.visibility = View.INVISIBLE
-
-            if (uploadTask.isSuccessful) {
-                storageRef.downloadUrl.addOnCompleteListener { urlTask ->
-                    urlTask.result?.let {
-                        imageUri = it
-                        Toast.makeText(this, imageUri.toString(),Toast.LENGTH_SHORT).show()
-                        mBinding.userProfilePhoto.setImageBitmap(bitmap)
-                    }
-                }
-            } else {
-                uploadTask.exception?.let {
-                    Toast.makeText(this, it.message!!,Toast.LENGTH_SHORT).show()
-
-                }
-            }
-        }
-
-    }
-*/
-
-
     private fun registerUser () {
 
         Log.d("Register","Inside Register Fun")
@@ -129,7 +118,6 @@ class SignUp : AppCompatActivity() {
         var username = mBinding.txtUsername.text.toString()
         var email = mBinding.txtEmail.text.toString()
         var phonenumber = mBinding.txtPhoneNumber.text.toString()
-        var usertype = mBinding.usertype.text.toString()
         var password = mBinding.txtPassword.text.toString()
 
 
@@ -178,73 +166,26 @@ class SignUp : AppCompatActivity() {
             mBinding.txtPassword.requestFocus()
             return
         }
+/*
+        if(imageUri == null){
+            Toast.makeText(this,"Please select a profile photo",Toast.LENGTH_SHORT).show()
+            return
+        }*/
 
+        val intent = Intent(this, HomeOwner::class.java)
 
-            dialog.show()
-            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    Log.d("Register", "Inside of createUserWithEmailAndPassword")
+        intent.putExtra("firstname",firstname)
+        intent.putExtra("lastname",lastname)
+        intent.putExtra("username",username)
+        intent.putExtra("email",email)
+        intent.putExtra("phonenumber",phonenumber)
+        intent.putExtra("userType",userType)
+        intent.putExtra("password",password)
+        intent.putExtra("imageUri",imageUri.toString())
 
-                    val user = task.result?.user
-                    val uid = user!!.uid
+        Log.d("Register",firstname)
 
-                    mDatabase = FirebaseDatabase.getInstance().reference.child("users").child("usertype").child(uid)
-
-                    val userhashmap: MutableMap<String, Any> = HashMap()
-
-                    userhashmap["firstname"] = "" + firstname
-                    userhashmap["lastname"] = "" + lastname
-                    userhashmap["username"] = "" + username
-                    userhashmap["email"] = "" + email
-                    userhashmap["phonenumber"] = "" + phonenumber
-                    userhashmap["pass"] = "" + password     //just for testing, saving password
-
-                    mDatabase.updateChildren(userhashmap)
-
-                    uploadImageToFirebase()
-                    dialog.dismiss()
-                    startActivity(Intent(this, Home::class.java))
-
-                    Toast.makeText(this, "Account Created Successfully :)", Toast.LENGTH_LONG).show()
-                }else {
-                    dialog.dismiss()
-                    Toast.makeText(this, "Error registering, try again later :(", Toast.LENGTH_LONG).show()
-                }
-            }
-
-    }
-private fun uploadImageToFirebase(){
-
-    Log.d("Register","Inside Upload To Firebase")
-
-    if (imageUri == null) return
-
-    val filename = UUID.randomUUID().toString()
-    val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
-    Log.d("Register","Inside Upload To Firebase after ref")
-
-    ref.putFile(imageUri!!)
-        .addOnSuccessListener {
-            Log.d("Register", "Successfully uploaded images: ${it.metadata?.path}")
-            ref.downloadUrl.addOnSuccessListener {
-                Log.d("Register", "File Location: ${it}")
-                saveImageIntoFirebase(it.toString())
-            }
-        }
-
-
-}
-private fun saveImageIntoFirebase(profileImageUrl: String){
-    Log.d("Register", "File Location Inside saveImageIntoFirebase: $profileImageUrl")
-     val uid = mAuth.currentUser?.uid.toString()
-
-    val ref = FirebaseDatabase.getInstance().reference.child("users").child("usertype").child(uid)
-
-    val imageUrlHashmap: MutableMap<String, Any> = HashMap()
-
-    imageUrlHashmap["imageUrl"] = "" + profileImageUrl
-
-    ref.updateChildren(imageUrlHashmap)
+        startActivity(intent)
 
     }
 

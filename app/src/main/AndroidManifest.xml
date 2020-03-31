@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".signin.Login"></activity>
-        <activity android:name=".Home" />
+        <activity android:name=".HomeCustomer" />
+        <activity android:name=".HomeOwner" />
         <activity android:name=".signin.SignUp" />
         <activity android:name=".MainActivity">
             <intent-filter>

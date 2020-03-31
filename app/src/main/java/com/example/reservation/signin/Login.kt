@@ -7,7 +7,7 @@ import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.reservation.Home
+import com.example.reservation.HomeCustomer
 import com.example.reservation.R
 import com.example.reservation.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -73,7 +73,7 @@ class Login : AppCompatActivity() {
                     Log.d("Testing","Inside isSuccessful")
 
                     dialog.dismiss()
-                    startActivity(Intent(this, Home::class.java))
+                    startActivity(Intent(this, HomeCustomer::class.java))
 
                 }
                 else {
