@@ -13,17 +13,11 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.reservation.HomeCustomer
-import com.example.reservation.HomeOwner
 import com.example.reservation.R
+import com.example.reservation.SignUpCustomer
 import com.example.reservation.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
 import dmax.dialog.SpotsDialog
-import java.util.*
-import kotlin.collections.HashMap
 
 class SignUp : AppCompatActivity()  {
 
@@ -172,7 +166,15 @@ class SignUp : AppCompatActivity()  {
             return
         }*/
 
-        val intent = Intent(this, HomeOwner::class.java)
+
+        val intent: Intent
+
+        if(userType=="Customer"){
+             intent = Intent(this, SignUpCustomer::class.java)
+        }
+        else{
+            intent = Intent(this, SignUpOwner::class.java)
+        }
 
         intent.putExtra("firstname",firstname)
         intent.putExtra("lastname",lastname)

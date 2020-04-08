@@ -1,14 +1,15 @@
 <resources>
     <string name="app_name">Reservation</string>
+    <string name="google_maps_key">AIzaSyDfHBGJXRJB3CM4UnbeFWT4q-e2iVq2Qj8</string>
 
     <string-array name="planets_array">
-    <item>Mercury</item>
-    <item>Venus</item>
-    <item>Earth</item>
-    <item>Mars</item>
-    <item>Jupiter</item>
-    <item>Saturn</item>
-    <item>Uranus</item>
-    <item>Neptune</item>
-</string-array>
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
 </resources>

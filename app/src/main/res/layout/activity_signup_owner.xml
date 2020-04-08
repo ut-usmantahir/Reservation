@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".signin.SignUpOwner">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="41dp"
+            android:layout_marginLeft="41dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="41dp"
+            android:layout_marginRight="41dp"
+            android:text="Please Enter Hotel Details"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="346dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="33dp"
+            android:layout_marginRight="33dp"
+            android:text="Create Account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_Location" />
+
+        <EditText
+            android:id="@+id/txt_hotelName"
+            android:layout_width="308dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginLeft="46dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="57dp"
+            android:layout_marginRight="57dp"
+            android:hint="Hotel Name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <EditText
+            android:id="@+id/txt_availableRooms"
+            android:layout_width="308dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginLeft="46dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="57dp"
+            android:layout_marginRight="57dp"
+            android:hint="Rooms Available"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_NumberOfRooms" />
+
+        <EditText
+            android:id="@+id/txt_hotelDescription"
+            android:layout_width="308dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginLeft="46dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="57dp"
+            android:layout_marginRight="57dp"
+            android:hint="Hotel Description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_availableRooms" />
+
+        <EditText
+            android:id="@+id/txt_Location"
+            android:layout_width="308dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginLeft="46dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="57dp"
+            android:layout_marginRight="57dp"
+            android:hint="Hotel Loaction"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_hotelDescription" />
+
+        <EditText
+            android:id="@+id/txt_NumberOfRooms"
+            android:layout_width="308dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginLeft="46dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="57dp"
+            android:layout_marginRight="57dp"
+            android:hint="Number of Rooms"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_hotelName" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
