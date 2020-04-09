@@ -32,17 +32,21 @@ class MainActivity : AppCompatActivity(), PermissionListener {
         setContentView(R.layout.activity_main)
 
         requestPermissions()
+
+
     }
 
     fun funCreateAccount(view: View){
         intent = Intent(this, SignUp::class.java)
 
         startActivity(intent)
+        finish()
     }
     fun funLoginAccount(view: View){
         intent = Intent(this, Login::class.java)
 
         startActivity(intent)
+        finish()
     }
 
 
@@ -62,7 +66,7 @@ class MainActivity : AppCompatActivity(), PermissionListener {
 
     override fun onPermissionGranted(response: PermissionGrantedResponse?) {
 
-        Toast.makeText(this,"Permission Granted",Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this,"Permission Granted",Toast.LENGTH_SHORT).show()
     }
 
 
@@ -108,7 +112,6 @@ class MainActivity : AppCompatActivity(), PermissionListener {
         intent.data = uri
         startActivityForResult(intent, 101)
     }
-
 
 
 }

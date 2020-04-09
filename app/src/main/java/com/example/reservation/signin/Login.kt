@@ -5,14 +5,18 @@ import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
+import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.example.reservation.HomeCustomer
 import com.example.reservation.HomeOwner
 import com.example.reservation.R
+import com.example.reservation.SignUpCustomer
 import com.example.reservation.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.*
 import dmax.dialog.SpotsDialog
+import java.util.*
 
 
 class Login : AppCompatActivity() {
@@ -72,8 +76,29 @@ class Login : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Log.d("Testing","Inside isSuccessful")
 
-                    dialog.dismiss()
-                    startActivity(Intent(this, HomeOwner::class.java))
+                    val user = task.result?.user
+                    val uid = user!!.uid
+
+                    mDatabase = FirebaseDatabase.getInstance().reference.child("users").child(uid)
+
+                    mDatabase.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(@NonNull dataSnapshot: DataSnapshot) {
+                            val map = dataSnapshot.value as Map<String, Any>?
+                            if (map!!["usertype"].toString().contains("Customer")) {
+                                dialog.dismiss()
+                                startActivity(Intent(this@Login, SignUpCustomer::class.java))
+                                finish()
+
+                            } else {
+                                dialog.dismiss()
+                                startActivity(Intent(this@Login, HomeOwner::class.java))
+                                finish()
+                            }
+                        }
+
+                        override fun onCancelled(@NonNull databaseError: DatabaseError) {}
+                    })
+
 
                 }
                 else {

@@ -107,7 +107,7 @@ class SignUpOwner : AppCompatActivity() {
                 val user = task.result?.user
                 val uid = user!!.uid
 
-               val mDatabase = FirebaseDatabase.getInstance().reference.child("users").child("usertype").child("owner").child(uid)
+               val mDatabase = FirebaseDatabase.getInstance().reference.child("users").child(uid)
                val mHotelReference = FirebaseDatabase.getInstance().reference.child("hotels").child(uid)
 
                 val userHashMap: MutableMap<String, Any> = HashMap()
@@ -133,8 +133,10 @@ class SignUpOwner : AppCompatActivity() {
                 uploadImageToFirebase()
                 dialog.dismiss()
                 startActivity(Intent(this, HomeOwner::class.java))
-
                 Toast.makeText(this, "Account Created Successfully :)", Toast.LENGTH_LONG).show()
+
+                finish()
+
             }else {
                 dialog.dismiss()
                 Toast.makeText(this, "Error registering, try again later :(", Toast.LENGTH_LONG).show()
@@ -169,7 +171,7 @@ class SignUpOwner : AppCompatActivity() {
         Log.d("Register", "File Location Inside saveImageIntoFirebase: $profileImageUrl")
         val uid = mAuth.currentUser?.uid.toString()
 
-        val ref = FirebaseDatabase.getInstance().reference.child("users").child("usertype").child("owner").child(uid)
+        val ref = FirebaseDatabase.getInstance().reference.child("users").child(uid)
 
         val imageUrlHashmap: MutableMap<String, Any> = HashMap()
 
