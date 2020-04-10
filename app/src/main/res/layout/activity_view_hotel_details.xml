@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+        <variable
+            name="hotel"
+            type="com.example.reservation.model.Hotel"/>
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ViewHotelDetails">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="85dp"
+            android:layout_marginRight="85dp"
+            android:text="Hotel Name: "
+            app:layout_constraintBottom_toTopOf="@+id/textView2"
+            app:layout_constraintEnd_toStartOf="@+id/txt_hotelName"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_hotelName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginEnd="81dp"
+            android:layout_marginRight="81dp"
+            android:text="@={hotel.hotelName, default=`Usman Tahr`}"
+            app:layout_constraintBottom_toTopOf="@+id/txt_hotelRooms"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView1"
+            app:layout_constraintStart_toStartOf="@+id/txt_hotelRooms"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="77dp"
+            android:layout_marginRight="77dp"
+            android:text="Hotel Rooms: "
+            app:layout_constraintBottom_toTopOf="@+id/textView3"
+            app:layout_constraintEnd_toStartOf="@+id/txt_hotelRooms"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+        <TextView
+            android:id="@+id/txt_hotelRooms"
+            android:layout_width="58dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginRight="100dp"
+            android:text="@={hotel.hotelRooms, default=`40`}"
+            app:layout_constraintBottom_toTopOf="@+id/txt_availableRooms"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="@+id/txt_availableRooms"
+            app:layout_constraintTop_toBottomOf="@+id/txt_hotelName" />
+
+        <TextView
+            android:id="@+id/txt_availableRooms"
+            android:layout_width="58dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginRight="100dp"
+            android:text="@={hotel.roomsAvailable, default=`40`}"
+            app:layout_constraintBottom_toTopOf="@+id/txt_location"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView3"
+            app:layout_constraintStart_toStartOf="@+id/txt_location"
+            app:layout_constraintTop_toBottomOf="@+id/txt_hotelRooms" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="58dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="109dp"
+            android:layout_marginRight="109dp"
+            android:text="Available Rooms: "
+            app:layout_constraintBottom_toTopOf="@+id/textView9"
+            app:layout_constraintEnd_toStartOf="@+id/txt_availableRooms"
+            app:layout_constraintStart_toStartOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="58dp"
+            android:layout_height="16dp"
+            android:text="Location: "
+            app:layout_constraintBottom_toTopOf="@+id/textView11"
+            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="80dp"
+            android:layout_height="23dp"
+            android:text="Description: "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/txt_description"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/txt_description"
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:text="@={hotel.hotelDescription, default=`Description`}"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/txt_location" />
+
+        <TextView
+            android:id="@+id/txt_location"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginEnd="62dp"
+            android:text="@={hotel.hotelLocation, default=`Location`}"
+
+            android:layout_marginRight="62dp"
+            app:layout_constraintBottom_toTopOf="@+id/txt_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            app:layout_constraintStart_toStartOf="@+id/txt_description"
+            app:layout_constraintTop_toBottomOf="@+id/txt_availableRooms" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginRight="6dp"
+            android:text="On this Screen will be map showing the location of restaurant"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

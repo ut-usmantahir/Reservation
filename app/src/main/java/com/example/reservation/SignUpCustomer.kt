@@ -8,6 +8,7 @@ import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
@@ -73,6 +74,12 @@ class SignUpCustomer : AppCompatActivity(), OnMapReadyCallback, LocationListener
             val intent = Intent(this@SignUpCustomer, MainActivity::class.java)
             startActivity(intent)
             finish()
+        }
+        mBinding.btnViewHotels.setOnClickListener {
+            val intent = Intent(this@SignUpCustomer,HotelsList::class.java)
+            startActivity(intent)
+            Toast.makeText(this,"Button Clicked", Toast.LENGTH_SHORT).show()
+
         }
 
 

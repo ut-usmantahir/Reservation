@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.reservation.HomeCustomer
 import com.example.reservation.HomeOwner
 import com.example.reservation.R
 import com.example.reservation.SignUpCustomer
@@ -16,7 +15,6 @@ import com.example.reservation.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import dmax.dialog.SpotsDialog
-import java.util.*
 
 
 class Login : AppCompatActivity() {

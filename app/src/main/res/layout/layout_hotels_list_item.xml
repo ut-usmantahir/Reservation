@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="hotel"
+            type="com.example.reservation.model.Hotel"/>
+
+    </data>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:orientation="vertical"
+        app:cardElevation="8dp"
+        android:layout_margin="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="280dp">
+
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hotel Name: "
+            app:layout_constraintBottom_toTopOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_hotelName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@={hotel.hotelName, default=`Usman Tahr`}"
+            app:layout_constraintBottom_toTopOf="@+id/txt_hotelRooms"
+            app:layout_constraintStart_toEndOf="@+id/textView1"
+            app:layout_constraintStart_toStartOf="@+id/txt_hotelRooms"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hotel Rooms: "
+            app:layout_constraintBottom_toTopOf="@+id/textView3"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+        <TextView
+            android:id="@+id/txt_hotelRooms"
+            android:layout_width="58dp"
+            android:layout_height="16dp"
+            android:text="@={hotel.hotelRooms, default=`40`}"
+            app:layout_constraintBottom_toTopOf="@+id/txt_availableRooms"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="@+id/txt_availableRooms"
+            app:layout_constraintTop_toBottomOf="@+id/txt_hotelName" />
+
+        <TextView
+            android:id="@+id/txt_availableRooms"
+            android:layout_width="58dp"
+            android:layout_height="16dp"
+            android:text="@={hotel.roomsAvailable, default=`40`}"
+            app:layout_constraintBottom_toTopOf="@+id/txt_location"
+            app:layout_constraintStart_toEndOf="@+id/textView3"
+            app:layout_constraintStart_toStartOf="@+id/txt_location"
+            app:layout_constraintTop_toBottomOf="@+id/txt_hotelRooms" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="58dp"
+            android:layout_height="16dp"
+            android:text="Available Rooms: "
+            app:layout_constraintBottom_toTopOf="@+id/textView9"
+            app:layout_constraintStart_toStartOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="58dp"
+            android:layout_height="16dp"
+            android:text="Location: "
+            app:layout_constraintBottom_toTopOf="@+id/textView11"
+            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="80dp"
+            android:layout_height="23dp"
+            android:text="Description: "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/txt_description"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/txt_description"
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:text="@={hotel.hotelDescription, default=`Description`}"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/txt_location" />
+
+        <TextView
+            android:id="@+id/txt_location"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:text="@={hotel.hotelLocation, default=`Location`}"
+            app:layout_constraintBottom_toTopOf="@+id/txt_description"
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            app:layout_constraintStart_toStartOf="@+id/txt_description"
+            app:layout_constraintTop_toBottomOf="@+id/txt_availableRooms" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
